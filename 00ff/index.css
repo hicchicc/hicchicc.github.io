@@ -1,0 +1,124 @@
+﻿body{
+  background-color: #222;
+  color: #fff;
+  margin: 0 auto;
+  padding: 0;
+  font-family: sans-serif;
+  font-weight: 400;
+  font-size: small;
+  margin-top: 32px;
+  margin-left: 47px;
+  margin-bottom: 128px;
+}
+
+img{
+  display:block;
+  image-rendering: pixelated;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: -moz-crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+img.logo{
+  margin-left: 65px;
+  background-color: #222;
+}
+
+img.bg{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background-color: #222;
+}
+
+section{
+  display: block;
+  margin: 64px;
+  padding: 0 16px;
+  border-left: 1px solid #034;
+}
+
+div.flexbox{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start; 
+}
+
+
+
+
+
+a{
+  display:inline-block;
+}
+a:link		{color: #0af;}	/* 未訪問リンク */
+a:visited	{color: #0af;}	/* 訪問済リンク */
+a:hover		{color: #aff; font-weight: bold;}	/* ポイント */
+a:active	{color: #fff; font-weight: bold;}	/* クリック */
+
+
+p {
+  margin-top: 1em;
+  margin-bottom: 0;
+  padding: 0;
+  line-height: 150%;
+}
+
+pre{
+  font-family: monospace, sans-serif;
+  font-size: small;
+  line-height: 110%;
+  color: #555;
+}
+
+strong{
+  font-weight: normal;
+  color: #fff;
+}
+
+
+
+h1{
+  border-bottom: 1px solid #055;
+  line-height: 75%;
+  color: #0f9;
+  font-size: x-large;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 0;
+}
+
+h2{
+  border-bottom: 1px solid #055;
+  line-height: 75%;
+  color: #0f9;
+  font-size: x-large;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 0;
+}
+
+h3{
+  border-bottom: 1px solid #055;
+  line-height: 75%;
+  color: #0f9;
+  font-size: large;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 0;
+}
+
+small{
+  display:block;
+  line-height: 175%;
+  color: #099;
+  font-size: small;
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 1em;
+}
+
+
+
+
+
