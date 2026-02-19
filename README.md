@@ -1,6 +1,8 @@
 # x0y0pxFreeFont
 https://hicchicc.github.io/00ff/
 
+![00FF](00ff/00fflogo.gif)
+
 x0y0pxFreeFont is a website that distributes pixel fonts created by hicc.
 
 The fonts are capable of pixel-by-pixel display, making them particularly popular in pixel art game development and translation.
