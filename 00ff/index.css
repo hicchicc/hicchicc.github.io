@@ -9,7 +9,6 @@
   margin-top: 32px;
   margin-left: 47px;
   margin-bottom: 128px;
-  -webkit-text-size-adjust: 100%;
 }
 
 img{
@@ -34,7 +33,7 @@ img.bg{
 
 section{
   display: block;
-  margin: 64px;
+  margin: 80px 64px;
   padding: 0 16px;
   border-left: 1px solid #034;
 }
@@ -58,12 +57,39 @@ a:hover		{color: #aff; font-weight: bold;}	/* ポイント */
 a:active	{color: #fff; font-weight: bold;}	/* クリック */
 
 
+/* ライセンス項目用リストの点を非表示 */
+ul{
+  list-style-type: none;
+  padding-left: 0.5rem;
+}
+
+li{
+  padding: 4px;
+}
+
+
+
+
+/* テキスト */
+
 p{
   margin-top: 1em;
   margin-bottom: 0;
   padding: 0;
   line-height: 150%;
 }
+
+[lang="ja"] {
+  color: #ddd;
+}
+
+[lang="en"] {
+  color: #aaa;
+}
+
+
+
+
 
 
 pre{
