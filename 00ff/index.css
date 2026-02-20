@@ -12,12 +12,17 @@
 }
 
 img{
-  display:block;
+  display: block;
   image-rendering: pixelated;
   image-rendering: -webkit-crisp-edges;
   image-rendering: -moz-crisp-edges;
   -ms-interpolation-mode: nearest-neighbor;
 }
+
+img.shields{
+  display: inline;
+}
+
 
 img.logo{
   margin-left: 65px;
@@ -30,6 +35,8 @@ img.bg{
   bottom: 0;
   background-color: #222;
 }
+
+
 
 section{
   display: block;
@@ -51,13 +58,13 @@ div.flexbox{
 a{
   display:inline-block;
 }
-a:link		{color: #0af;}	/* 未訪問リンク */
+a:link	{color: #0af;}	/* 未訪問リンク */
 a:visited	{color: #0af;}	/* 訪問済リンク */
-a:hover		{color: #aff; font-weight: bold;}	/* ポイント */
+a:hover	{color: #aff; font-weight: bold;}	/* ポイント */
 a:active	{color: #fff; font-weight: bold;}	/* クリック */
 
 
-/* ライセンス項目用リストの点を非表示 */
+/* リストの点を非表示 */
 ul{
   list-style-type: none;
   padding-left: 0.5rem;
