@@ -65,13 +65,19 @@ a:active	{color: #fff; font-weight: bold;}	/* クリック */
 
 
 /* リストの点を非表示 */
-ul{
-  list-style-type: none;
-  padding-left: 0.5rem;
+
+
+
+
+/* 説明付きリスト */
+dl{
+  display: grid;
+  grid-template-columns: max-content 1fr;
 }
 
-li{
-  padding: 4px;
+dd{
+  margin-left: 1rem;
+  padding: 0;
 }
 
 
@@ -86,12 +92,10 @@ p{
   line-height: 150%;
 }
 
-[lang="ja"] {
-  color: #ddd;
-}
+
 
 [lang="en"] {
-  color: #aaa;
+  color: #acc;
 }
 
 
