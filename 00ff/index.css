@@ -1,89 +1,207 @@
-﻿body{
-  background-color: #222;
-  color: #fff;
-  margin: 0 auto;
-  padding: 0;
-  font-family: sans-serif;
-  font-weight: 400;
-  font-size: 0.8rem;
-  margin-top: 32px;
-  margin-left: 47px;
-  margin-bottom: 128px;
+﻿*, *::before, *::after {
+  box-sizing: border-box; /* 全てのパディングやボーダーを幅に含める */
 }
 
-img{
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  background-color: #111;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+.site-wrapper {
+  background-color: #222;
+  width: 100%;             /* モバイルファースト画面幅いっぱい */
+  margin: 0 auto;          /* 中央寄せ */
+  font-size: 0.75rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column; /* メインコンテンツの中身は縦に積む */
+  flex: 1;
+  order: 2; /* メインはサイトラッパー内の右側に配置 */
+  min-width: 0;
+}
+
+section {
+  background: #fff;
+  background-color: #222;
   display: block;
+  width: 100%;
+  margin: 16px 0 4rem 0;
+  padding: 0 0 0 8px;
+  border-left: 1px solid #034;
+  overflow-x: auto; /* 横スクロール自体は許可する*/
+  scrollbar-width: none; /* Firefox でスクロールバー非表示*/
+
+}
+
+section::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera でセクションのスクロールバー非表示*/
+}
+
+
+
+
+[lang="en"] {
+  color: #acc; /* 英文のみ文字色を変える */
+}
+
+
+
+aside {
+  display: none;  /* 左ウィジェットはモバイルファーストでは非表示 */
+}
+
+.as1 {
+/* aside top logo */
+  grid-row: 1;
+  align-self: start; 
+  margin-top: 16px;
+}
+
+.as2 {
+  /* aside mid gadget */
+  grid-row: 2;
+  position: relative;
+}
+
+.as3 {
+  /* aside end footer */
+  grid-row: 3;
+  align-self: end; 
+  margin-bottom: 16px;
+}
+
+
+
+/* フェードインアニメーション */
+.fadein {
+  animation-name: fadein;
+  animation-timing-function: ease-out;
+  animation-delay: 0.2s;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  transform: translateY(-32px);
+  opacity: 0; /* 透明な初期状態から */
+}
+
+@keyframes fadein {
+  0% {
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1; /* 不透明へ遷移 */
+  }
+}
+
+
+
+dd{
+  margin: 0 0 1rem 1rem; /* ライセンス条項の日本語部分のインデント */
+  padding: 0;
+}
+
+
+
+@media (min-width: 960px) { /* ■PC閲覧時のみ変化するメディアクエリ■ */
+
+  .site-wrapper {
+    display: flex;
+    flex-direction: row; /* asideとmainは横並びflexにする */
+    align-items: flex-start; /* 中身の高さが違っても上揃えにする */
+    max-width: 1650px;       /* PCなどでの最大幅 */
+    margin: 0 auto;
+  }
+
+  .mainlogo {
+    display: none; /* main側ロゴはモバイルファーストで表示するが広ければ非表示に */
+  }
+
+  aside { /* ■「Unboxing」ウィジェット■ */
+    display: grid;  /* 非表示を解除 */
+
+    grid-template-rows: 1fr auto 1fr; /* 均等余白・auto・均等余白の3段グリッド */
+    align-items: center; 
+    justify-items: center;
+
+    background-color: #222;
+    order: 1; /* ラッパー内の左側に配置 */
+    flex: 0 0 352px;         /* 最低幅を指定 */
+    position: sticky;        /* スクロールしても固定 */
+    top: 0px; /* 上端に固定 */
+    height: 100vh; /* 高さは表示されている領域全て */
+    text-align: center;
+    color: #999;
+  }
+
+  dl{
+    display: grid;
+    grid-template-columns: max-content 1fr; /* ライセンス条項を横並びに */
+  }
+
+dd{
+  margin: 0 0 0 1rem; /* 横並び時はライセンス行間をタイトに */
+  padding: 0;
+}
+
+}
+
+
+@media (max-width: 600px) { /* ■スマホ閲覧時のみ変化するメディアクエリ■ */
+  img {
+  max-width: 100%; /* スマホでの画像サイズは親要素の幅までにする */
+  height: auto;    /* 縦横比を維持し縮小 */
+  }
+}
+
+
+
+
+
+img {
+  display:block;
   image-rendering: pixelated;
   image-rendering: -webkit-crisp-edges;
   image-rendering: -moz-crisp-edges;
   -ms-interpolation-mode: nearest-neighbor;
 }
 
+
+img.mainlogo{
+  margin: 64px 0;
+}
+
+
+
 img.shields{
   display: inline;
+  margin: 2px 2px 0 0; /* shields バッヂ画像の並びと余白 */
 }
-
-
-img.logo{
-  margin-left: 65px;
-  background-color: #222;
-}
-
-img.bg{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  background-color: #222;
-}
-
-
-
-section{
-  display: block;
-  margin: 80px 64px;
-  padding: 0 16px;
-  border-left: 1px solid #034;
-}
-
-div.flexbox{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start; 
-}
-
-
-
 
 
 a{
   display:inline-block;
+  margin-bottom: 1rem; /* クリックできるURLは行間を取り対象を明確に */
 }
-a:link	{color: #0af;}	/* 未訪問リンク */
+
+a:link		{color: #0af;}	/* 未訪問リンク */
 a:visited	{color: #0af;}	/* 訪問済リンク */
-a:hover	{color: #aff; font-weight: bold;}	/* ポイント */
+a:hover		{color: #aff; font-weight: bold;}	/* ポイント */
 a:active	{color: #fff; font-weight: bold;}	/* クリック */
 
-
-/* リストの点を非表示 */
-
-
-
-
-/* 説明付きリスト */
-dl{
-  display: grid;
-  grid-template-columns: max-content 1fr;
-}
-
-dd{
-  margin-left: 1rem;
-  padding: 0;
-}
-
-
-
-
-/* テキスト */
 
 p{
   margin-top: 1em;
@@ -94,20 +212,13 @@ p{
 
 
 
-[lang="en"] {
-  color: #acc;
-}
-
-
-
-
-
-
 pre{
   font-family: monospace, sans-serif;
   line-height: 110%;
-  color: #555;
+  color: #666;
+  overflow-x: auto; /* 幅が出る場合はpre範囲のみ横スク */
 }
+
 
 strong{
   font-weight: normal;
@@ -116,36 +227,14 @@ strong{
 
 
 
-h1{
+h1, h2, h3{
   border-bottom: 1px solid #055;
   line-height: 75%;
   color: #0f9;
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
-  margin: 0;
-}
-
-
-h2{
-  border-bottom: 1px solid #055;
-  line-height: 75%;
-  color: #0f9;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-  margin: 0;
-}
-
-
-h3{
-  border-bottom: 1px solid #055;
-  line-height: 75%;
-  color: #0f9;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-decoration: none;
-  margin: 0;
+  margin: 0.5rem 0.5rem 0 0;
 }
 
 
@@ -153,8 +242,77 @@ small{
   display:block;
   line-height: 175%;
   color: #099;
-  font-size: 0.5rem;
+  font-size: 0.75rem;
   font-weight: bold;
   text-decoration: none;
   margin-bottom: 1em;
 }
+
+
+/* フォントをサーバから読み込み定義する */
+
+@font-face {
+  font-family: 'x8y12pxDenkiChip';
+  src: url('fonts/x8y12pxDenkiChip.woff2') format('woff2');
+}
+
+
+
+/* デバイス画面内のテキストエリア設定 */
+#fontPreview {
+  /* 1. 見た目を透明にする */
+  background: transparent;
+  border: none;
+  outline: none;       /* クリック時の青い枠線も消す */
+  
+  /* 2. サイズを完全に固定する */
+  width: 192px;        /* デバイスの画面幅に合わせる */
+  height: 136px;       /* デバイスの画面高さに合わせる */
+  resize: none;        /* 右下のサイズ変更つまみを消す */
+
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  
+  /* 3. テキストの挙動 */
+  overflow-y: auto;    /* 文字が増えたらスクロールはさせる */
+  display: block;
+
+
+  /* 4. ドットフォントを綺麗に見せる */
+  -webkit-font-smoothing: none;
+  -webkit-text-stroke: 0px transparent;
+  -webkit-appearance: none;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  shape-rendering: crispEdges;
+  text-rendering: pixelated;
+
+  letter-spacing: 0px;
+  vertical-align: top;
+  text-align: left;
+  line-height: 12px;
+  margin: 0;
+  padding: 0;
+  font-family: "x8y12pxDenkiChip" ;
+  font-size: 12px;
+  text-shadow: 1px 1px 0px #ccb;
+  font-weight: 400;
+  color: #333;
+  box-shadow: none; /* テキストボックス内側のシャドウを消す */
+
+
+  padding-left: 0.5px;  /* 0.5px右寄せでシャープになったが… */
+  transform: translateZ(0);
+
+
+
+
+  scrollbar-width: none;
+}
+
+#fontPreview::-webkit-scrollbar {
+  display: none;
+}
+
+
