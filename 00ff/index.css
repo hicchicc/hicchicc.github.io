@@ -304,7 +304,7 @@ small{
   box-shadow: none; /* テキストボックス内側のシャドウを消す */
 
 
-  padding-left: 0.5px;  /* 0.5px右寄せでシャープになったが… */
+  padding-left: 1.5px;  /* 0.5px右寄せでシャープになったが…サファリで左が切れたので1.5pxとしておく */
   transform: translateZ(0);
 
 
@@ -316,5 +316,6 @@ small{
 #fontPreview::-webkit-scrollbar {
   display: none;
 }
+
 
 
