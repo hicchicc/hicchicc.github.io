@@ -20,7 +20,7 @@
   <meta name="twitter:title" content="x0y0pxFreeFont | ゼロピクセルフリーフォント">
   <meta name="twitter:description" content="商用利用も可能なピクセルフォントを配布中！ゲームやMV制作などに好評です">
 
-  <link rel="stylesheet" type="text/css" href="index.css?20260305">
+  <link rel="stylesheet" type="text/css" href="index.css?20260307">
   <link rel="icon" href="../favicon.ico" sizes="any">
   <link rel="icon" href="../favicon.png" type="image/png">
 </head>
@@ -364,13 +364,12 @@
 
 
     <aside>
-      <img class="as1" src="img/logo_00ff.png">
+      <div class="as1">
+        <img src="img/logo_00ff.png">
+      </div>
 
-      <div class="as2 fadein">
-        <img src="img/unboxing.png">
-
-        <textarea id="fontPreview">Enter your text here...</textarea>
-        - フォント試用ウィジェット試作中 -
+      <div class="as2 fadein" id="pc-container">
+        <textarea id="fontPreview" placeholder="Font Preview > Input text here..."></textarea>
       </div>
 
       <footer class="as3">
@@ -381,9 +380,160 @@
 
 
 
+    <script>
+      // --- 設定エリア ---
+      const SPRITE_OFFSET = 256; // スプライトオフセット幅
+      const textarea = document.getElementById('fontPreview');
+      const container = document.getElementById('pc-container');
 
+      // [キーコード, x, y, w, h, 入力文字]
+      const KEY_MAP = [
+        ['Escape', 8, 248, 16, 16, null],
+        ['Digit1', 24, 248, 16, 16, '1'],
+        ['Digit2', 40, 248, 16, 16, '2'],
+        ['Digit3', 56, 248, 16, 16, '3'],
+        ['Digit4', 72, 248, 16, 16, '4'],
+        ['Digit5', 88, 248, 16, 16, '5'],
+        ['Digit6', 104, 248, 16, 16, '6'],
+        ['Digit7', 120, 248, 16, 16, '7'],
+        ['Digit8', 136, 248, 16, 16, '8'],
+        ['Digit9', 152, 248, 16, 16, '9'],
+        ['Digit0', 168, 248, 16, 16, '0'],
+        ['Minus', 184, 248, 16, 16, '-'],
+        ['Equal', 200, 248, 16, 16, '='],
+        ['Backspace', 216, 248, 32, 16, 'BACKSPACE'],
 
+        ['Tab', 8, 264, 24, 16, '\t'],
+        ['KeyQ', 32, 264, 16, 16, 'q'],
+        ['KeyW', 48, 264, 16, 16, 'w'],
+        ['KeyE', 64, 264, 16, 16, 'e'],
+        ['KeyR', 80, 264, 16, 16, 'r'],
+        ['KeyT', 96, 264, 16, 16, 't'],
+        ['KeyY', 112, 264, 16, 16, 'y'],
+        ['KeyU', 128, 264, 16, 16, 'u'],
+        ['KeyI', 144, 264, 16, 16, 'i'],
+        ['KeyO', 160, 264, 16, 16, 'o'],
+        ['KeyP', 176, 264, 16, 16, 'p'],
+        ['BracketLeft', 192, 264, 16, 16, '['],
+        ['BracketRight', 208, 264, 16, 16, ']'],
+        ['Backslash', 224, 264, 24, 16, '\\'],
 
+        ['CapsLock', 8, 280, 28, 16, null],
+        ['KeyA', 36, 280, 16, 16, 'a'],
+        ['KeyS', 52, 280, 16, 16, 's'],
+        ['KeyD', 68, 280, 16, 16, 'd'],
+        ['KeyF', 84, 280, 16, 16, 'f'],
+        ['KeyG', 100, 280, 16, 16, 'g'],
+        ['KeyH', 116, 280, 16, 16, 'h'],
+        ['KeyJ', 132, 280, 16, 16, 'j'],
+        ['KeyK', 148, 280, 16, 16, 'k'],
+        ['KeyL', 164, 280, 16, 16, 'l'],
+        ['Semicolon', 180, 280, 16, 16, ';'],
+        ['Quote', 196, 280, 16, 16, "'"],
+        ['Enter', 212, 280, 60, 16, '\n'],
+
+        ['ShiftLeft', 8, 296, 36, 16, null],
+        ['KeyZ', 44, 296, 16, 16, 'z'],
+        ['KeyX', 60, 296, 16, 16, 'x'],
+        ['KeyC', 76, 296, 16, 16, 'c'],
+        ['KeyV', 92, 296, 16, 16, 'v'],
+        ['KeyB', 108, 296, 16, 16, 'b'],
+        ['KeyN', 124, 296, 16, 16, 'n'],
+        ['KeyM', 140, 296, 16, 16, 'm'],
+        ['Comma', 156, 296, 16, 16, ','],
+        ['Period', 172, 296, 16, 16, '.'],
+        ['Slash', 188, 296, 16, 16, '/'],
+        ['ShiftRight', 204, 296, 44, 16, null],
+
+        ['ControlLeft', 8, 312, 20, 16, null],
+        ['MetaLeft', 28, 312, 20, 16, null],
+        ['AltLeft', 48, 312, 20, 16, null],
+        ['Space', 68, 312, 100, 16, ' '],
+        ['AltRight', 168, 312, 24, 16, null],
+        ['ControlRight', 192, 312, 24, 16, null],
+        ['ArrowUp', 216, 312, 16, 16, null],
+        ['ArrowLeft', 200, 328, 16, 16, null],
+        ['ArrowDown', 216, 328, 16, 16, null],
+        ['ArrowRight', 232, 328, 16, 16, null],
+      ];
+
+      const elements = {};
+
+      // 文字入力ロジック
+      function insertText(char) {
+        if (!char) return;
+
+        // フォーカスがない場合は強制的に当てる（キャレットを出現させる）
+        if (document.activeElement !== textarea) {
+          textarea.focus();
+        }
+
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const currentValue = textarea.value;
+
+        if (char === 'BACKSPACE') {
+          // バックスペースの挙動：選択範囲があるか、カーソル前の一文字を消す
+          if (start !== end) {
+            textarea.value = currentValue.substring(0, start) + currentValue.substring(end);
+            textarea.setSelectionRange(start, start);
+          } else if (start > 0) {
+            textarea.value = currentValue.substring(0, start - 1) + currentValue.substring(end);
+            textarea.setSelectionRange(start - 1, start - 1);
+          }
+        } else {
+          // 通常の文字挿入
+          textarea.value = currentValue.substring(0, start) + char + currentValue.substring(end);
+          // カーソルを入力した文字の直後に移動
+          const newPos = start + char.length;
+          textarea.setSelectionRange(newPos, newPos);
+        }
+      }
+
+      // --- 初期化処理 ---
+      KEY_MAP.forEach(([code, x, y, w, h, char]) => {
+        const patch = document.createElement('div');
+        patch.className = 'key-patch';
+
+        // スタイル設定
+        Object.assign(patch.style, {
+          left: `${x}px`,
+          top: `${y}px`,
+          width: `${w}px`,
+          height: `${h}px`,
+          backgroundPosition: `-${SPRITE_OFFSET + x}px -${y}px`,
+          opacity: '0'
+        });
+
+        // 物理マウスダウンでパッチ不透明化とテキスト挿入
+        patch.addEventListener('mousedown', (e) => {
+          e.preventDefault(); // textareaからフォーカスが外れるのを防ぐ
+          patch.style.opacity = '1';
+          insertText(char);
+        });
+
+        // マウスアップで透明に戻す
+        const release = () => patch.style.opacity = '0';
+        patch.addEventListener('mouseup', release);
+        patch.addEventListener('mouseleave', release);
+
+        container.appendChild(patch);
+        elements[code] = patch;
+      });
+
+      // 物理キーダウンはパッチ不透明化、キーアップで透明に戻すだけ
+      window.addEventListener('keydown', (e) => {
+        if (elements[e.code] && !e.repeat) {
+          elements[e.code].style.opacity = '1';
+        }
+      });
+
+      window.addEventListener('keyup', (e) => {
+        if (elements[e.code]) {
+          elements[e.code].style.opacity = '0';
+        }
+      });
+    </script>
 
   </div>
 </body>

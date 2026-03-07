@@ -78,6 +78,14 @@ aside {
   /* aside mid gadget */
   grid-row: 2;
   position: relative;
+  width: 256px;
+  height: 400px;
+  background-image: url("img/pc.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 
 .as3 {
@@ -132,7 +140,7 @@ dd{
     display: none; /* main側ロゴはモバイルファーストで表示するが広ければ非表示に */
   }
 
-  aside { /* ■「Unboxing」ウィジェット■ */
+  aside { /* ■ウィジェット■ */
     display: grid;  /* 非表示を解除 */
 
     grid-template-rows: 1fr auto 1fr; /* 均等余白・auto・均等余白の3段グリッド */
@@ -179,6 +187,11 @@ img {
   image-rendering: -webkit-crisp-edges;
   image-rendering: -moz-crisp-edges;
   -ms-interpolation-mode: nearest-neighbor;
+
+  /* テキストや要素としての範囲選択を無効化、右クリックは任意 */
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: auto;
 }
 
 
@@ -318,4 +331,30 @@ small{
 }
 
 
+#fontPreview::placeholder {
+  color: #333;
+  opacity: 1;    /* Firefox対策の不透明化 */
+}
 
+/* フォーカスした瞬間にプレースホルダを消す */
+#fontPreview:focus::placeholder {
+    color: transparent;
+    text-shadow: none;
+}
+
+
+/* キーボードにパッチする大量の画像片 */
+.key-patch {
+    position: absolute;
+    background-image: url('img/pc.png');
+    background-repeat: no-repeat;
+    transition: opacity 0s; 
+    opacity: 0; /* 透明状態で並べておく */
+    pointer-events: auto; /* クリック検知 */
+    cursor: pointer;
+}
+
+/* クリックまたはキー操作時、不透明にして可視化。高速かつ低負荷 */
+.key-patch:active {
+    opacity: 1;
+}
