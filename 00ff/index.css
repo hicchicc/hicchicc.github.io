@@ -3,8 +3,6 @@
 }
 
 
-
-
 html {
   scroll-behavior: smooth;
 }
@@ -18,8 +16,6 @@ body {
   font-family: sans-serif;
   font-weight: 400;
 }
-
-
 
 
 .site-wrapper {
@@ -55,12 +51,9 @@ section::-webkit-scrollbar {
 }
 
 
-
-
 [lang="en"] {
   color: #acc; /* 英文のみ文字色を変える */
 }
-
 
 
 aside {
@@ -96,7 +89,6 @@ aside {
 }
 
 
-
 /* フェードインアニメーション */
 .fadein {
   animation-name: fadein;
@@ -118,12 +110,10 @@ aside {
 }
 
 
-
 dd{
   margin: 0 0 1rem 1rem; /* ライセンス条項の日本語部分のインデント */
   padding: 0;
 }
-
 
 
 @media (min-width: 960px) { /* ■PC閲覧時のみ変化するメディアクエリ■ */
@@ -162,11 +152,10 @@ dd{
     grid-template-columns: max-content 1fr; /* ライセンス条項を横並びに */
   }
 
-dd{
-  margin: 0 0 0 1rem; /* 横並び時はライセンス行間をタイトに */
-  padding: 0;
-}
-
+  dd{
+    margin: 0 0 0 1rem; /* 横並び時はライセンス行間をタイトに */
+    padding: 0;
+  }
 }
 
 
@@ -176,9 +165,6 @@ dd{
   height: auto;    /* 縦横比を維持し縮小 */
   }
 }
-
-
-
 
 
 img {
@@ -200,7 +186,6 @@ img.mainlogo{
 }
 
 
-
 img.shields{
   display: inline;
   margin: 2px 2px 0 0; /* shields バッヂ画像の並びと余白 */
@@ -217,14 +202,12 @@ a:visited	{color: #0af;}	/* 訪問済リンク */
 a:hover		{color: #aff; font-weight: bold;}	/* ポイント */
 a:active	{color: #fff; font-weight: bold;}	/* クリック */
 
-
 p{
   margin-top: 1em;
   margin-bottom: 0;
   padding: 0;
   line-height: 150%;
 }
-
 
 
 pre{
@@ -239,7 +222,6 @@ strong{
   font-weight: normal;
   color: #fff;
 }
-
 
 
 h1, h2, h3{
@@ -265,12 +247,10 @@ small{
 
 
 /* フォントをサーバから読み込み定義する */
-
 @font-face {
   font-family: 'x8y12pxDenkiChip';
   src: url('fonts/x8y12pxDenkiChip.woff2') format('woff2');
 }
-
 
 
 /* デバイス画面内のテキストエリア設定 */
@@ -281,18 +261,19 @@ small{
   outline: none;       /* クリック時の青い枠線も消す */
   
   /* 2. サイズを完全に固定する */
-  width: 192px;        /* デバイスの画面幅に合わせる */
-  height: 136px;       /* デバイスの画面高さに合わせる */
+  width: 196px;        /* デバイスの画面幅に合わせ、描画域はpaddingで2px寄せる */
+  height: 136px;       /* デバイスの画面高さに合わせ、バーはテキストを乗せない */
   resize: none;        /* 右下のサイズ変更つまみを消す */
 
   position: absolute;
   top: 32px;
-  left: 32px;
+  left: 30px;
+  margin: 0;
+  padding: 0 1.5px 0 2.5px;
   
   /* 3. テキストの挙動 */
   overflow-y: auto;    /* 文字が増えたらスクロールはさせる */
   display: block;
-
 
   /* 4. ドットフォントを綺麗に見せる */
   -webkit-font-smoothing: none;
@@ -302,34 +283,25 @@ small{
   text-rendering: geometricPrecision;
   shape-rendering: crispEdges;
   text-rendering: pixelated;
+  font-kerning: none;
 
   letter-spacing: 0px;
-  vertical-align: top;
   text-align: left;
   line-height: 12px;
-  margin: 0;
-  padding: 0;
+
   font-family: "x8y12pxDenkiChip" ;
   font-size: 12px;
   text-shadow: 1px 1px 0px #ccb;
   font-weight: 400;
   color: #333;
   box-shadow: none; /* テキストボックス内側のシャドウを消す */
-
-
-  padding-left: 1.5px;  /* 0.5px右寄せでシャープになったが…サファリで左が切れたので1.5pxとしておく */
   transform: translateZ(0);
-
-
-
-
   scrollbar-width: none;
 }
 
 #fontPreview::-webkit-scrollbar {
   display: none;
 }
-
 
 #fontPreview::placeholder {
   color: #333;
@@ -343,7 +315,7 @@ small{
 }
 
 
-/* キーボードにパッチする大量の画像片 */
+/* キーボード上にパッチする大量のdiv、座標や挙動はインラインJS */
 .key-patch {
     position: absolute;
     background-image: url('img/pc.png');
