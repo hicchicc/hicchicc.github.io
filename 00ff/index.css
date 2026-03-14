@@ -282,7 +282,7 @@ small{
   -moz-osx-font-smoothing: grayscale;
   text-rendering: geometricPrecision;
   shape-rendering: crispEdges;
-  text-rendering: pixelated;
+  image-rendering: pixelated;
   font-kerning: none;
 
   letter-spacing: 0px;
@@ -301,6 +301,13 @@ small{
 
 #fontPreview::-webkit-scrollbar {
   display: none;
+}
+
+/* Safariテキストボックス文字切れ対策 */
+@supports (-webkit-hyphens:none) {
+  #fontPreview {
+    padding-left: 3px;
+  }
 }
 
 #fontPreview::placeholder {
