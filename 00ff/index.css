@@ -306,7 +306,7 @@ small{
 /* Safariテキストボックス文字切れ対策 */
 @supports (-webkit-hyphens:none) {
   #fontPreview {
-    padding-left: 3px;
+    padding: 0 2px 0 2px;
   }
 }
 
