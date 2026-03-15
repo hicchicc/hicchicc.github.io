@@ -1,25 +1,22 @@
 ﻿*, *::before, *::after {
-  box-sizing: border-box; /* 全てのパディングやボーダーを幅に含める */
+  box-sizing: border-box; /* 全ての要素範囲にパディングとボーダーを含める */
 }
-
 
 html {
   scroll-behavior: smooth;
 }
 
-
 body {
-  background-color: #111;
-  color: #fff;
+  background-color: #111111;
+  color: #FFFFFF;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   font-weight: 400;
 }
 
-
 .site-wrapper {
-  background-color: #222;
+  background-color: #222222;
   width: 100%;             /* モバイルファースト画面幅いっぱい */
   margin: 0 auto;          /* 中央寄せ */
   font-size: 0.75rem;
@@ -34,13 +31,13 @@ main {
 }
 
 section {
-  background: #fff;
-  background-color: #222;
+  background: #FFFFFF;
+  background-color: #222222;
   display: block;
   width: 100%;
   margin: 16px 0 4rem 0;
   padding: 0 0 0 8px;
-  border-left: 1px solid #034;
+  border-left: 1px solid #003344;
   overflow-x: auto; /* 横スクロール自体は許可する*/
   scrollbar-width: none; /* Firefox でスクロールバー非表示*/
 
@@ -50,11 +47,9 @@ section::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera でセクションのスクロールバー非表示*/
 }
 
-
 [lang="en"] {
-  color: #acc; /* 英文のみ文字色を変える */
+  color: #AACCCC; /* 英文のみ文字色を変える */
 }
-
 
 aside {
   display: none;  /* 左ウィジェットはモバイルファーストでは非表示 */
@@ -88,7 +83,6 @@ aside {
   margin-bottom: 16px;
 }
 
-
 /* フェードインアニメーション */
 .fadein {
   animation-name: fadein;
@@ -109,15 +103,12 @@ aside {
   }
 }
 
-
 dd{
   margin: 0 0 1rem 1rem; /* ライセンス条項の日本語部分のインデント */
   padding: 0;
 }
 
-
 @media (min-width: 960px) { /* ■PC閲覧時のみ変化するメディアクエリ■ */
-
   .site-wrapper {
     display: flex;
     flex-direction: row; /* asideとmainは横並びflexにする */
@@ -137,14 +128,14 @@ dd{
     align-items: center; 
     justify-items: center;
 
-    background-color: #222;
+    background-color: #222222;
     order: 1; /* ラッパー内の左側に配置 */
     flex: 0 0 352px;         /* 最低幅を指定 */
     position: sticky;        /* スクロールしても固定 */
     top: 0px; /* 上端に固定 */
     height: 100vh; /* 高さは表示されている領域全て */
     text-align: center;
-    color: #999;
+    color: #999999;
   }
 
   dl{
@@ -158,14 +149,12 @@ dd{
   }
 }
 
-
 @media (max-width: 600px) { /* ■スマホ閲覧時のみ変化するメディアクエリ■ */
   img {
   max-width: 100%; /* スマホでの画像サイズは親要素の幅までにする */
   height: auto;    /* 縦横比を維持し縮小 */
   }
 }
-
 
 img {
   display:block;
@@ -180,27 +169,24 @@ img {
     pointer-events: auto;
 }
 
-
 img.mainlogo{
   margin: 64px 0;
 }
-
 
 img.shields{
   display: inline;
   margin: 2px 2px 0 0; /* shields バッヂ画像の並びと余白 */
 }
 
-
 a{
   display:inline-block;
   margin-bottom: 1rem; /* クリックできるURLは行間を取り対象を明確に */
 }
 
-a:link		{color: #0af;}	/* 未訪問リンク */
-a:visited	{color: #0af;}	/* 訪問済リンク */
-a:hover		{color: #aff; font-weight: bold;}	/* ポイント */
-a:active	{color: #fff; font-weight: bold;}	/* クリック */
+a:link		{color: #00AAFF;}	/* 未訪問リンク */
+a:visited	{color: #00AAFF;}	/* 訪問済リンク */
+a:hover		{color: #AAFFFF; font-weight: bold;}	/* ポイント */
+a:active	{color: #FFFFFF; font-weight: bold;}	/* クリック */
 
 p{
   margin-top: 1em;
@@ -209,42 +195,37 @@ p{
   line-height: 150%;
 }
 
-
 pre{
   font-family: monospace, sans-serif;
   line-height: 110%;
-  color: #666;
+  color: #666666;
   overflow-x: auto; /* 幅が出る場合はpre範囲のみ横スク */
 }
 
-
 strong{
   font-weight: normal;
-  color: #fff;
+  color: #FFFFFF;
 }
 
-
 h1, h2, h3{
-  border-bottom: 1px solid #055;
+  border-bottom: 1px solid #005555;
   line-height: 75%;
-  color: #0f9;
+  color: #00FF99; /* 00FF Core Color */
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
   margin: 0.5rem 0.5rem 0 0;
 }
 
-
 small{
   display:block;
   line-height: 175%;
-  color: #099;
+  color: #009999; /* 00FF Sub Color */
   font-size: 0.75rem;
   font-weight: bold;
   text-decoration: none;
   margin-bottom: 1em;
 }
-
 
 /* フォントをサーバから読み込み定義する */
 @font-face {
@@ -252,25 +233,26 @@ small{
   src: url('fonts/x8y12pxDenkiChip.woff2') format('woff2');
 }
 
-
 /* デバイス画面内のテキストエリア設定 */
 #fontPreview {
   /* 1. 見た目を透明にする */
   background: transparent;
   border: none;
   outline: none;       /* クリック時の青い枠線も消す */
+  -webkit-appearance: none;
+  appearance: none;
+  box-shadow: none; /* テキストボックス内側のシャドウを消す */
   
-  /* 2. サイズを完全に固定する */
+  /* 2. サイズを完全固定 */
   width: 196px;        /* デバイスの画面幅に合わせ、描画域はpaddingで2px寄せる */
   height: 136px;       /* デバイスの画面高さに合わせ、バーはテキストを乗せない */
-  resize: none;        /* 右下のサイズ変更つまみを消す */
-
+  resize: none;        /* サイズ変更つまみを消す */
   position: absolute;
   top: 32px;
   left: 30px;
   margin: 0;
   padding: 0 1.5px 0 2.5px;
-  
+
   /* 3. テキストの挙動 */
   overflow-y: auto;    /* 文字が増えたらスクロールはさせる */
   display: block;
@@ -278,7 +260,6 @@ small{
   /* 4. ドットフォントを綺麗に見せる */
   -webkit-font-smoothing: none;
   -webkit-text-stroke: 0px transparent;
-  -webkit-appearance: none;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: geometricPrecision;
   shape-rendering: crispEdges;
@@ -291,10 +272,9 @@ small{
 
   font-family: "x8y12pxDenkiChip" ;
   font-size: 12px;
-  text-shadow: 1px 1px 0px #ccb;
+  text-shadow: 1px 1px 0px #CCCCBB;
   font-weight: 400;
-  color: #333;
-  box-shadow: none; /* テキストボックス内側のシャドウを消す */
+  color: #333333;
   transform: translateZ(0);
   scrollbar-width: none;
 }
@@ -311,7 +291,7 @@ small{
 }
 
 #fontPreview::placeholder {
-  color: #333;
+  color: #333333;
   opacity: 1;    /* Firefox対策の不透明化 */
 }
 
@@ -320,7 +300,6 @@ small{
     color: transparent;
     text-shadow: none;
 }
-
 
 /* キーボード上にパッチする大量のdiv、座標や挙動はインラインJS */
 .key-patch {
