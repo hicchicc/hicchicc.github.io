@@ -173,11 +173,6 @@ img.mainlogo{
   margin: 64px 0;
 }
 
-img.shields{
-  display: inline;
-  margin: 2px 2px 0 0; /* shields バッヂ画像の並びと余白 */
-}
-
 a{
   display:inline-block;
   margin-bottom: 1rem; /* クリックできるURLは行間を取り対象を明確に */
