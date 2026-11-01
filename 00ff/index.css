@@ -225,7 +225,7 @@ small{
 /* フォントをサーバから読み込み定義する */
 @font-face {
   font-family: 'x8y12pxDenkiChip';
-  src: url('fonts/x8y12pxDenkiChip.woff2') format('woff2');
+  src: url('fonts/x8y12pxDenkiChip.woff2?v=1.1') format('woff2');
 }
 
 /* デバイス画面内のテキストエリア設定 */
