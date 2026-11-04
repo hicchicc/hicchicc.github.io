@@ -299,7 +299,7 @@ small{
 /* キーボード上にパッチする大量のdiv、座標や挙動はインラインJS */
 .key-patch {
     position: absolute;
-    background-image: url('img/pc.png');
+    background-image: url('img/pc.png?v=2');
     background-repeat: no-repeat;
     transition: opacity 0s; 
     opacity: 0; /* 透明状態で並べておく */
@@ -310,4 +310,47 @@ small{
 /* クリックまたはキー操作時、不透明にして可視化。高速かつ低負荷 */
 .key-patch:active {
     opacity: 1;
+}
+
+/* SNSボタンの画像パッチ */
+.social-patch {
+    position: absolute;
+    display: block;
+    margin: 0;
+    padding: 0;
+    background-image: url('img/pc.png?v=2');
+    background-repeat: no-repeat;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+    text-decoration: none;
+}
+
+/* マウス押下時のボタン画像 */
+.social-patch:active {
+    opacity: 1;
+}
+
+/* SNSボタン横のLED画像パッチ */
+.social-led {
+    position: absolute;
+    background-image: url('img/pc.png?v=2');
+    background-repeat: no-repeat;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* LED点滅 */
+.social-led.is-blinking {
+    animation: social-led-blink 0.1s steps(1, end) infinite;
+}
+
+@keyframes social-led-blink {
+    0%, 49% {
+        opacity: 0;
+    }
+    50%, 100% {
+        opacity: 1;
+    }
 }

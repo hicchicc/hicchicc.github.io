@@ -21,7 +21,7 @@
   <meta name="twitter:description" content="商用利用も可能なピクセルフォントを配布中！ゲームやMV制作などに好評です">
   <meta name="google-site-verification" content="LjqlAjZi1iwwKVK_1XzncMzi0-2vAJ242F-Z-6-WZqA">
 
-  <link rel="stylesheet" type="text/css" href="index.css?v=3">
+  <link rel="stylesheet" type="text/css" href="index.css?v=4">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="icon" href="/favicon.png?v=2" type="image/png" sizes="192x192">
   <link rel="icon" href="/favicon.ico?v=2" sizes="any">
@@ -543,6 +543,89 @@
 
         container.appendChild(patch);
         elements[code] = patch;
+
+        
+      // --- SNSボタン設定 ---
+      // [名称, x, y, w, h, URL, LEDのx, LEDのy, LEDのw, LEDのh]
+      const SOCIAL_MAP = [
+        ['GitHub', 176, 224, 24, 20,
+          'https://github.com/hicchicc',
+          168, 224, 8, 16],
+
+        ['X', 224, 224, 24, 20,
+          'https://x.com/hicchicc',
+          216, 224, 8, 16]
+      ];
+
+      SOCIAL_MAP.forEach(([name, x, y, w, h, url, lx, ly, lw, lh]) => {
+
+        // LEDパッチ生成
+        const led = document.createElement('div');
+        led.className = 'social-led';
+
+        Object.assign(led.style, {
+          left: `${lx}px`,
+          top: `${ly}px`,
+          width: `${lw}px`,
+          height: `${lh}px`,
+          backgroundPosition: `-${SPRITE_OFFSET + lx}px -${ly}px`
+        });
+
+        container.appendChild(led);
+
+        // SNSボタン生成
+        const button = document.createElement('a');
+        button.className = 'social-patch';
+        button.href = url;
+        button.target = '_blank';
+        button.rel = 'noopener noreferrer';
+        button.setAttribute('aria-label', name);
+        button.title = name;
+
+        Object.assign(button.style, {
+          left: `${x}px`,
+          top: `${y}px`,
+          width: `${w}px`,
+          height: `${h}px`,
+          backgroundPosition: `-${SPRITE_OFFSET + x}px -${y}px`
+        });
+
+        // ホバーでLED点滅開始
+        button.addEventListener('mouseenter', () => {
+          led.classList.add('is-blinking');
+        });
+
+        // ホバー解除でLED停止
+        button.addEventListener('mouseleave', () => {
+          led.classList.remove('is-blinking');
+        });
+
+        // キーボード操作でフォーカスされた場合も点滅
+        button.addEventListener('focus', () => {
+          led.classList.add('is-blinking');
+        });
+
+        button.addEventListener('blur', () => {
+          led.classList.remove('is-blinking');
+        });
+
+        // マウス押下でボタン画像を表示
+        button.addEventListener('pointerdown', () => {
+          button.style.opacity = '1';
+        });
+
+        // 押下解除で透明化
+        const releaseButton = () => {
+          button.style.opacity = '0';
+        };
+
+        button.addEventListener('pointerup', releaseButton);
+        button.addEventListener('pointerleave', releaseButton);
+        button.addEventListener('blur', releaseButton);
+
+        container.appendChild(button);
+      });
+
       });
 
       // 物理キーダウンはパッチ不透明化、キーアップで透明に戻すだけ
