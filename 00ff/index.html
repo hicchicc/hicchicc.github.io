@@ -112,7 +112,7 @@
         <a href="https://github.com/hicchicc/x5y8pxNegaTape" target="_blank" rel="noopener noreferrer">
           [README on GitHub] x5y8pxNegaTape ↗
         </a>
-        
+
       </section>
 
       <section>
@@ -129,28 +129,34 @@
       </section>
 
       <section>
-        <h2 style="color: #FFCC11">Notice: License transfer in progress</h2><small>ライセンス移行作業中のお知らせ</small>
+        <h2 style="color: #FFCC11">Notice: SIL OFL Edition Releases</h2><small>SILライセンス版の公開について</small>
         <p lang="ja">
           このセクションよりも下にあるフォントは、独自ライセンスで配布中です。<br>
-          2026年現在、すべてのフォントをSILライセンス版へ移行する準備を進めています。<br>
-          独自ライセンス版は、SILライセンス版の公開後も従来通りご利用いただけます。<br><br>
+          各フォントについて、SIL Open Font License (OFL) 版の公開を順次進めていきます。<br>
+          SILライセンス版の公開後も、既存の独自ライセンス版は、取得時点の利用規約に基づいて引き続きご利用いただけます。<br>
+          既に公開されているゲームや作品について、ライセンス表記の変更などを行っていただく必要はありません。<br><br>
 
-          国際標準レベルのライセンスの枠組みで、より安心して運用していただけるようにしたいことや、<br>
-          データもオープンな資産としてGithubへ1本化集約しつつ、国内外で解釈の格差がないようにしたい思いもあっての決断となります。<br>
-          ご迷惑おかけする点もあると思いますが、ご理解と応援のほど、よろしくお願いします！
+          今後は、国際的に広く利用されているライセンスの枠組みを採用し、より安心してご利用いただける環境を整えるとともに、<br>
+          フォントデータや関連情報をGitHubに集約し、国内外で共通の利用条件を提供できるようにしていきます。<br>
+          なお、今後の更新・不具合対応は原則としてSILライセンス版のみを対象とし、独自ライセンス版の公式配布も将来的に終了する予定です。<br>
+          ご理解と応援のほど、よろしくお願いします！
         </p>
 
         <p lang="en">
-          Fonts below this section on this site are currently distributed under a original license.<br>
-          As of 2026, we are preparing to migrate all fonts to SIL-licensed versions.<br>
-          The original license versions will continue to be available as before even after the SIL-licensed versions are
-          released.<br><br>
+          Fonts below this section on this site are currently distributed under our custom license.<br>
+          We are gradually preparing to release SIL Open Font License (OFL) editions of our fonts.<br>
+          Even after the release of an OFL edition, existing custom-licensed versions may continue to be used under the
+          terms of the license applicable at the time of acquisition.<br>
+          No changes to license notices or other actions are required for games or other works already released using
+          these versions.<br><br>
 
-          This decision was made in order to enable greater peace of mind in operations under an internationally
-          standard licensing framework,<br>
-          while also consolidating data as open assets on Github, to ensure there are no discrepancies in interpretation
-          both domestically and internationally.<br>
-          We apologize for any inconvenience this may cause, and we appreciate your understanding and support!
+          By adopting an internationally recognized licensing framework, we aim to provide a more reliable environment
+          for font users while also<br>
+          consolidating font data and related information on GitHub, making consistent licensing terms available to
+          users worldwide.<br>
+          Going forward, updates and bug fixes will generally be provided only for the OFL editions, and official
+          distribution of the original custom-licensed versions is also expected to be discontinued in the future.<br>
+          Thank you for your understanding and continued support!
         </p>
       </section>
 
@@ -544,87 +550,87 @@
         container.appendChild(patch);
         elements[code] = patch;
 
-        
-      // --- SNSボタン設定 20261104追加 ---
-      // [名称, x, y, w, h, URL, LEDのx, LEDのy, LEDのw, LEDのh]
-      const SOCIAL_MAP = [
-        ['GitHub', 176, 224, 24, 20,
-          'https://github.com/hicchicc',
-          168, 224, 8, 16],
 
-        ['X', 224, 224, 24, 20,
-          'https://x.com/hicchicc',
-          216, 224, 8, 16]
-      ];
+        // --- SNSボタン設定 20261104追加 ---
+        // [名称, x, y, w, h, URL, LEDのx, LEDのy, LEDのw, LEDのh]
+        const SOCIAL_MAP = [
+          ['GitHub', 176, 224, 24, 20,
+            'https://github.com/hicchicc',
+            168, 224, 8, 16],
 
-      SOCIAL_MAP.forEach(([name, x, y, w, h, url, lx, ly, lw, lh]) => {
+          ['X', 224, 224, 24, 20,
+            'https://x.com/hicchicc',
+            216, 224, 8, 16]
+        ];
 
-        // LEDパッチ生成
-        const led = document.createElement('div');
-        led.className = 'social-led';
+        SOCIAL_MAP.forEach(([name, x, y, w, h, url, lx, ly, lw, lh]) => {
 
-        Object.assign(led.style, {
-          left: `${lx}px`,
-          top: `${ly}px`,
-          width: `${lw}px`,
-          height: `${lh}px`,
-          backgroundPosition: `-${SPRITE_OFFSET + lx}px -${ly}px`
+          // LEDパッチ生成
+          const led = document.createElement('div');
+          led.className = 'social-led';
+
+          Object.assign(led.style, {
+            left: `${lx}px`,
+            top: `${ly}px`,
+            width: `${lw}px`,
+            height: `${lh}px`,
+            backgroundPosition: `-${SPRITE_OFFSET + lx}px -${ly}px`
+          });
+
+          container.appendChild(led);
+
+          // SNSボタン生成
+          const button = document.createElement('a');
+          button.className = 'social-patch';
+          button.href = url;
+          button.target = '_blank';
+          button.rel = 'noopener noreferrer';
+          button.setAttribute('aria-label', name);
+          button.title = name;
+
+          Object.assign(button.style, {
+            left: `${x}px`,
+            top: `${y}px`,
+            width: `${w}px`,
+            height: `${h}px`,
+            backgroundPosition: `-${SPRITE_OFFSET + x}px -${y}px`
+          });
+
+          // ホバーでLED点滅開始
+          button.addEventListener('mouseenter', () => {
+            led.classList.add('is-blinking');
+          });
+
+          // ホバー解除でLED停止
+          button.addEventListener('mouseleave', () => {
+            led.classList.remove('is-blinking');
+          });
+
+          // キーボード操作でフォーカスされた場合も点滅
+          button.addEventListener('focus', () => {
+            led.classList.add('is-blinking');
+          });
+
+          button.addEventListener('blur', () => {
+            led.classList.remove('is-blinking');
+          });
+
+          // マウス押下でボタン画像を表示
+          button.addEventListener('pointerdown', () => {
+            button.style.opacity = '1';
+          });
+
+          // 押下解除で透明化
+          const releaseButton = () => {
+            button.style.opacity = '0';
+          };
+
+          button.addEventListener('pointerup', releaseButton);
+          button.addEventListener('pointerleave', releaseButton);
+          button.addEventListener('blur', releaseButton);
+
+          container.appendChild(button);
         });
-
-        container.appendChild(led);
-
-        // SNSボタン生成
-        const button = document.createElement('a');
-        button.className = 'social-patch';
-        button.href = url;
-        button.target = '_blank';
-        button.rel = 'noopener noreferrer';
-        button.setAttribute('aria-label', name);
-        button.title = name;
-
-        Object.assign(button.style, {
-          left: `${x}px`,
-          top: `${y}px`,
-          width: `${w}px`,
-          height: `${h}px`,
-          backgroundPosition: `-${SPRITE_OFFSET + x}px -${y}px`
-        });
-
-        // ホバーでLED点滅開始
-        button.addEventListener('mouseenter', () => {
-          led.classList.add('is-blinking');
-        });
-
-        // ホバー解除でLED停止
-        button.addEventListener('mouseleave', () => {
-          led.classList.remove('is-blinking');
-        });
-
-        // キーボード操作でフォーカスされた場合も点滅
-        button.addEventListener('focus', () => {
-          led.classList.add('is-blinking');
-        });
-
-        button.addEventListener('blur', () => {
-          led.classList.remove('is-blinking');
-        });
-
-        // マウス押下でボタン画像を表示
-        button.addEventListener('pointerdown', () => {
-          button.style.opacity = '1';
-        });
-
-        // 押下解除で透明化
-        const releaseButton = () => {
-          button.style.opacity = '0';
-        };
-
-        button.addEventListener('pointerup', releaseButton);
-        button.addEventListener('pointerleave', releaseButton);
-        button.addEventListener('blur', releaseButton);
-
-        container.appendChild(button);
-      });
 
       });
 
